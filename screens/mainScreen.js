@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, TextInput, View, ScrollView, Image } from 'react-native';
+import { Drawer, Container, Header, Content, Button } from 'native-base';
 
 let roxo = "#7A3361";
 
@@ -7,8 +8,10 @@ import Arrow from '../assets/arrow.svg'
 import qrcode from '../assets/qr.svg'
 import search from '../assets/search.svg'
 
+import SideBar from './sidebar.js'
 
 export default () => {
+
     const [username, setUsername] = React.useState("thadougab");
     const [cervejas, setCervejas] = React.useState(0);
 
@@ -19,9 +22,23 @@ export default () => {
     function barConnect() {
         console.log("conectando ao Bar");
     }
+    let drawer;
+    let closeDrawer = () => {
+        drawer._root.close()
+    };
+    let openDrawer = () => {
+        drawer._root.open()
+    };
 
     return (
-        <React.Fragment>
+        <Drawer
+            ref={(ref) => { drawer = ref; }}
+            content={<SideBar close={() => closeDrawer()} />}
+            onClose={() => closeDrawer()}
+            tapToClose={false}
+            side="right"
+        >
+
             <View style={{
                 display: 'inline-flex',
                 flexDirection: "row",
@@ -36,21 +53,28 @@ export default () => {
                     selectable={false}
                     onPress={() => setCervejas(cervejas + 1)}
                 >{cervejas} Cervejas</Text>
-                <View style={{
-                    display: 'inline-flex',
-                    flexDirection: "row"
-                }}>
-                    <Text style={{
-                        color: roxo,
-                        fontWeight: 'bold',
-                        marginVertical: 'auto'
-                    }}
-                        selectable={false}
-                    >@{username}  </Text>
-                    <Image source={Arrow} style={{
-                        width: 30,
-                        height: 30
-                    }} />
+                <View >
+                    <TouchableOpacity
+                        onPress={() => openDrawer()}
+                        style={{
+                            display: "inline-flex",
+                            flexDirection: "row",
+
+                        }}
+                    >
+                        <Text style={{
+                            color: roxo,
+                            fontWeight: 'bold',
+                            marginVertical: 'auto'
+                        }}
+                            selectable={false}
+                        >@{username}  </Text>
+                        <Image source={Arrow} style={{
+                            width: 30,
+                            height: 30
+                        }}
+                        />
+                    </TouchableOpacity>
                 </View>
             </View>
             <View style={{
@@ -223,6 +247,6 @@ export default () => {
                     </ScrollView>
                 </View>
             </View>
-        </React.Fragment>
+        </Drawer>
     )
 }

@@ -30,9 +30,11 @@ export default function App() {
         maxHeight: "800px",
         margin: "auto",
         boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.75)",
+        overflow: "hidden"
+
       }} >
 
-        <Sidebar />
+        <MainScreen />
         <View style={{
           marginTop: "auto",
           height: "10px",
