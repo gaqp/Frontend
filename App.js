@@ -7,6 +7,7 @@ import Logo from './assets/logo.png'
 
 import MainScreen from './screens/mainScreen'
 import LoginScreen from './screens/login'
+import Sidebar from './screens/sidebar'
 // Instruct SplashScreen not to hide yet, we want to do this manually
 SplashScreen.preventAutoHide();
 
@@ -22,7 +23,7 @@ export default function App() {
       }}>
       <View style={{
         width: "80%",
-        minWidth:"320px",
+        minWidth: "320px",
         maxWidth: "450px",
         height: "90%",
         minHeight: "640px",
@@ -31,9 +32,14 @@ export default function App() {
         boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.75)",
       }} >
 
-        <MainScreen />
-
+        <Sidebar />
+        <View style={{
+          marginTop: "auto",
+          height: "10px",
+          backgroundColor: "#7A3361"
+        }} />
       </View>
+
     </View>
     //   </AnimatedAppLoader>
   );

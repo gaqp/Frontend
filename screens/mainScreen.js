@@ -1,6 +1,5 @@
-import { Updates } from 'expo';
 import React from 'react';
-import { TouchableOpacity, Text, TextInput, View, Image } from 'react-native';
+import { TouchableOpacity, Text, TextInput, View, ScrollView, Image } from 'react-native';
 
 let roxo = "#7A3361";
 
@@ -8,11 +7,13 @@ import Arrow from '../assets/arrow.svg'
 import qrcode from '../assets/qr.svg'
 import search from '../assets/search.svg'
 
+
 export default () => {
     const [username, setUsername] = React.useState("thadougab");
     const [cervejas, setCervejas] = React.useState(0);
 
     const [searchString, setSearchString] = React.useState("");
+
 
 
     function barConnect() {
@@ -170,9 +171,56 @@ export default () => {
                     }}>
                         Descontos TOP do dia!
                 </Text>
-                <View>
-
+                    <ScrollView
+                        showsHorizontalScrollIndicator={false}
+                        style={{
+                            height: "100px",
+                            overflowX: "scroll",
+                            overflowY: "hidden"
+                        }}
+                    >
+                        <Image
+                            source="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Lower_Manhattan_from_Staten_Island_Ferry_Corrected_Jan_2006.jpg/1024px-Lower_Manhattan_from_Staten_Island_Ferry_Corrected_Jan_2006.jpg"
+                            style={{
+                                width: "1024px",
+                                height: "256px"
+                            }}
+                        />
+                    </ScrollView>
                 </View>
+                <View style={{
+                    marginTop: "25px"
+                }}>
+                    <Text style={{
+                        fontStyle: "bold",
+                        fontSize: "1rem",
+                        color: "#606062"
+                    }}>
+                        A grana está curta? Temos descontos!
+                </Text>
+                    <Text style={{
+                        fontSize: "0.8rem",
+                        marginTop: "5px",
+                        color: "#A1A1A1"
+                    }}>
+                        Descontos TOP do dia!
+                </Text>
+                    <ScrollView
+                        showsHorizontalScrollIndicator={false}
+                        style={{
+                            height: "100px",
+                            overflowX: "scroll",
+                            overflowY: "hidden"
+                        }}
+                    >
+                        <Image
+                            source="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Lower_Manhattan_from_Staten_Island_Ferry_Corrected_Jan_2006.jpg/1024px-Lower_Manhattan_from_Staten_Island_Ferry_Corrected_Jan_2006.jpg"
+                            style={{
+                                width: "1024px",
+                                height: "256px"
+                            }}
+                        />
+                    </ScrollView>
                 </View>
             </View>
         </React.Fragment>

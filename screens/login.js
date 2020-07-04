@@ -141,13 +141,6 @@ export default () => {
                         color="#7a3361"
                         onPress={() => Updates.reload()}
                     />
-                    <View style={{
-                        marginTop: "auto",
-                        height: "10px",
-                        backgroundColor: "#7A3361"
-                    }}>
-
-                    </View>
                 </View>
 
             </View >
