@@ -10,34 +10,19 @@ export default () => {
     const [passwordValue, onChangePassword] = React.useState("");
 
     return (
-        <View
-            style={{
-                position: "relative",
-                backgroundColor: "#F9FBFC",
-                width: "100%",
-                height: "100%",
-            }}
-        >
-            <View style={{
-                width: "80%",
-                maxWidth: "800px",
-                height: "90%",
-                maxHeight: "900px",
-                margin: "auto",
-                boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.75)",
-            }} >
-                <Image source={Logo}
-                    style={{
-                        marginTop: "10%",
-                        height: 75,
-                        resizeMode: "contain"
-                    }}
-                />
-                <View style={{
+        <React.Fragment>
+            <Image source={Logo}
+                style={{
                     marginTop: "10%",
-                    marginLeft: "auto",
-                    marginRight: "auto"
-                }}>
+                    height: 75,
+                    resizeMode: "contain"
+                }}
+            />
+            <View style={{
+                marginTop: "10%",
+                marginLeft: "auto",
+                marginRight: "auto"
+            }}>
                 <View
                     style={{
                         backgroundColor: "white",
@@ -59,11 +44,15 @@ export default () => {
                             marginBottom: "auto",
                             height: 20,
                             width: 20,
-                            marginRight:"5px",
+                            marginRight: "5px",
                         }}
                     />
                     <TextInput id="loginInput"
                         placeholder="Nome de usuário"
+                        style={{
+                            width: "100%"
+                        }}
+                        underlineColorAndroid='transparent'
                         onChangeText={login => onChangeLogin(login)}
                         value={loginValue}
                     >
@@ -88,13 +77,16 @@ export default () => {
                         style={{
                             marginTop: "auto",
                             marginBottom: "auto",
-                            marginRight:"5px",
+                            marginRight: "5px",
                             height: 20,
                             width: 20,
                         }}
                     />
                     <TextInput id="passwordInput"
                         underlineColorAndroid='transparent'
+                        style={{
+                            width: "100%"
+                        }}
                         value={passwordValue}
                         onChangeText={password => onChangePassword(password)}
                         placeholder="Senha"
@@ -149,17 +141,16 @@ export default () => {
                         color="#7a3361"
                         onPress={() => Updates.reload()}
                     />
+                    <View style={{
+                        marginTop: "auto",
+                        height: "10px",
+                        backgroundColor: "#7A3361"
+                    }}>
+
+                    </View>
                 </View>
-                </View>
-                <View style={{
-                    marginTop:"auto",
-                    height:"10px",
-                    backgroundColor:"#7A3361" 
-                }}>
-                    
-                </View>
-            </View>
-            
-        </View >
+
+            </View >
+        </React.Fragment>
     )
 }

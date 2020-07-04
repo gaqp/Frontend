@@ -5,15 +5,37 @@ import React from 'react';
 import { Animated, StyleSheet, View } from 'react-native';
 import Logo from './assets/logo.png'
 
+import MainScreen from './screens/mainScreen'
 import LoginScreen from './screens/login'
 // Instruct SplashScreen not to hide yet, we want to do this manually
 SplashScreen.preventAutoHide();
 
 export default function App() {
   return (
-    <AnimatedAppLoader image={{ uri: Logo }}>
-      <LoginScreen />
-    </AnimatedAppLoader>
+    //   <AnimatedAppLoader image={{ uri: Logo }}>
+    <View
+      style={{
+        position: "relative",
+        backgroundColor: "#F9FBFC",
+        width: "100%",
+        height: "100%",
+      }}>
+      <View style={{
+        width: "80%",
+        minWidth:"320px",
+        maxWidth: "450px",
+        height: "90%",
+        minHeight: "640px",
+        maxHeight: "800px",
+        margin: "auto",
+        boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.75)",
+      }} >
+
+        <MainScreen />
+
+      </View>
+    </View>
+    //   </AnimatedAppLoader>
   );
 }
 
