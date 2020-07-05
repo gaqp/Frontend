@@ -7,6 +7,7 @@ let roxo = "#7A3361";
 
 import Arrow from '../assets/arrow.svg'
 import Comida from '../assets/comida.svg'
+import Trocar from '../assets/trocar.svg'
 
 export default (props) => {
 
@@ -43,12 +44,12 @@ export default (props) => {
                 <Text style={{
                     marginLeft: "10px",
                     marginBottom: "20px",
-                    marginTop:"20px",
+                    marginTop: "20px",
                     fontWeight: "bold",
                     fontSize: "1rem",
                     color: "#606062"
                 }}>
-                    Cardápio
+                    Troca de pontos
                 </Text>
                 <View>
                     <Text style={{
@@ -58,9 +59,8 @@ export default (props) => {
                         fontSize: "0.8rem",
                         color: "#606062"
                     }}>
-                        Comidas
+                        Opa!, Que tal?
                     </Text>
-
                     {props.cardapio.comida.map(item => {
                         return (
                             <View key={item.nome}>
@@ -89,7 +89,7 @@ export default (props) => {
                                         fontSize: "0.8rem",
                                         color: "#A1A1A1"
                                     }}>
-                                        R${item.preco}
+                                        {item.preco} Pontos
                                     </Text>
                                 </View>
                                 <Text style={{
@@ -104,20 +104,8 @@ export default (props) => {
                             </View>
                         )
                     })}
-                </View>
-                <View>
-                    <Text style={{
-                        marginLeft: "20px",
-                        marginBottom: "10px",
-                        fontWeight: "bold",
-                        fontSize: "0.8rem",
-                        color: "#606062"
-                    }}>
-                        Bebidas
-                    </Text>
                     {props.cardapio.bebida.map(item => {
                         return (
-
                             <View key={item.nome}>
                                 <View style={{
                                     display: "inline-flex",
@@ -129,15 +117,13 @@ export default (props) => {
                                         padding: 0
                                     }}
                                     />
-
                                     <Text style={{
                                         marginLeft: "20px",
                                         marginBottom: "10px",
                                         fontWeight: "bold",
                                         fontSize: "0.8rem",
                                         color: "#A1A1A1"
-                                    }}>{item.nome}
-                                    </Text>
+                                    }}>{item.nome}</Text>
                                     <Text style={{
                                         marginLeft: "20px",
                                         marginRight: "10px",
@@ -146,7 +132,50 @@ export default (props) => {
                                         fontSize: "0.8rem",
                                         color: "#A1A1A1"
                                     }}>
-                                        R${item.preco}
+                                        {item.preco} Pontos
+                                    </Text>
+                                </View>
+                                <Text style={{
+                                    marginLeft: "20px",
+                                    marginBottom: "10px",
+                                    fontWeight: "bold",
+                                    fontSize: "0.7rem",
+                                    color: "#A1A1A1"
+                                }}>
+                                    {item.descricao}
+                                </Text>
+                            </View>
+                        )
+                    })}
+                    {props.cardapio.pontos.map(item => {
+                        return (
+                            <View key={item.nome}>
+                                <View style={{
+                                    display: "inline-flex",
+                                    flexDirection: "row",
+                                    justifyContent: 'space-between'
+                                }}>
+                                    <CheckBox containerStyle={{
+                                        margin: 0,
+                                        padding: 0
+                                    }}
+                                    />
+                                    <Text style={{
+                                        marginLeft: "20px",
+                                        marginBottom: "10px",
+                                        fontWeight: "bold",
+                                        fontSize: "0.8rem",
+                                        color: "#A1A1A1"
+                                    }}>{item.nome}</Text>
+                                    <Text style={{
+                                        marginLeft: "20px",
+                                        marginRight: "10px",
+                                        marginBottom: "10px",
+                                        fontWeight: "bold",
+                                        fontSize: "0.8rem",
+                                        color: "#A1A1A1"
+                                    }}>
+                                        {item.preco} Pontos
                                     </Text>
                                 </View>
                                 <Text style={{
@@ -162,128 +191,23 @@ export default (props) => {
                         )
                     })}
                 </View>
-                <View>
-                    <Text style={{
-                        marginLeft: "20px",
-                        marginBottom: "10px",
-                        fontWeight: "bold",
-                        fontSize: "0.8rem",
-                        color: "#606062"
-                    }}>
-                        Descontos do dia
-                    </Text>
-                    {props.cardapio.comida.map(item => {
-                        if (item.promocao) {
-                            return (
-                                <View key={item.nome}>
-                                    <View style={{
-                                        display: "inline-flex",
-                                        flexDirection: "row",
-                                        justifyContent: 'space-between'
-                                    }}>
-                                        <CheckBox containerStyle={{
-                                            margin: 0,
-                                            padding: 0
-                                        }}
-                                        />
-                                        <Text style={{
-                                            marginLeft: "20px",
-                                            marginBottom: "10px",
-                                            fontWeight: "bold",
-                                            fontSize: "0.8rem",
-                                            color: "#A1A1A1"
-                                        }}>{item.nome}
-                                        </Text>
-                                        <Text style={{
-                                            marginLeft: "20px",
-                                            marginRight: "10px",
-                                            marginBottom: "10px",
-                                            fontWeight: "bold",
-                                            fontSize: "0.8rem",
-                                            color: "#A1A1A1"
-                                        }}>
-                                            R${item.preco}
-                                        </Text>
-                                    </View>
-                                    <Text style={{
-                                        marginLeft: "20px",
-                                        marginBottom: "10px",
-                                        fontWeight: "bold",
-                                        fontSize: "0.7rem",
-                                        color: "#A1A1A1"
-                                    }}>
-                                        {item.descricao}
-                                    </Text>
-                                </View>)
-                        }
-
-                    })}
-
-                    {props.cardapio.bebida.map(item => {
-                        if (item.promocao) {
-                            return (
-                                <View key={item.nome}>
-                                    <View style={{
-                                        display: "inline-flex",
-                                        flexDirection: "row",
-                                        justifyContent: 'space-between'
-                                    }}>
-                                        <CheckBox containerStyle={{
-                                            margin: 0,
-                                            padding: 0
-                                        }}
-                                        />
-                                        <Text style={{
-                                            marginLeft: "20px",
-                                            marginBottom: "10px",
-                                            fontWeight: "bold",
-                                            fontSize: "0.8rem",
-                                            color: "#A1A1A1"
-                                        }}>{item.nome}
-                                        </Text>
-                                        <Text style={{
-                                            marginLeft: "20px",
-                                            marginRight: "10px",
-                                            marginBottom: "10px",
-                                            fontWeight: "bold",
-                                            fontSize: "0.8rem",
-                                            color: "#A1A1A1"
-                                        }}>
-                                            R${item.preco}
-                                        </Text>
-                                    </View>
-                                    <Text style={{
-                                        marginLeft: "20px",
-                                        marginBottom: "10px",
-                                        fontWeight: "bold",
-                                        fontSize: "0.7rem",
-                                        color: "#A1A1A1"
-                                    }}>
-                                        {item.descricao}
-                                    </Text>
-                                </View>)
-                        }
-
-                    })}
-
-                </View>
             </View>
             <TouchableOpacity style={{
-                height:"70px",
-                width:"70px",
-                backgroundColor:roxo,
-                borderRadius:"50%",
-                marginTop:"auto",
-                marginLeft:"auto",
-                marginBottom:"20px",
-                marginRight:"20px"
+                height: "70px",
+                width: "70px",
+                backgroundColor: roxo,
+                borderRadius: "50%",
+                marginTop: "auto",
+                marginLeft: "auto",
+                marginBottom: "20px",
+                marginRight: "20px"
             }}>
-                <Image source={Comida} style={{
-                    width:"50px",
-                    height:"50px",
-                    marginHorizontal:"auto",
-                    marginVertical:"auto"
-                }}/>
+                <Image source={Trocar} style={{
+                    width: "50px",
+                    height: "50px",
+                    marginHorizontal: "auto",
+                    marginVertical: "auto"
+                }} />
             </TouchableOpacity>
         </View>
 
