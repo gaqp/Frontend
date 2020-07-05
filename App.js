@@ -36,7 +36,7 @@ export default function App() {
 
       }} >
 
-        <MainScreen />
+        <MainScreen id="5f01798cdaec1d2994e9c487" />
         <View style={{
           marginTop: "auto",
           height: "10px",

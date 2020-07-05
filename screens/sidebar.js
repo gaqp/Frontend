@@ -7,7 +7,7 @@ import Arrow from '../assets/arrow.svg'
 import User from '../assets/face.svg'
 
 export default (props) => {
-    const [username, setUsername] = React.useState("thadougab");
+    let username = props.user.username;
     let menu = ["Configurações", "Segurança", "Notificações", "Locais Favoritos", "Reclamações"];
     return (
         <View style={{

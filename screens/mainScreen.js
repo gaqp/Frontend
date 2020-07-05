@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableOpacity, Text, TextInput, View, ScrollView, Image } from 'react-native';
 import { Drawer, Container, Header, Content, Button } from 'native-base';
 import BarInfo from './barInfo.js'
-
+import API from '../services/api.js'
 
 let roxo = "#7A3361";
 
@@ -16,7 +16,7 @@ import barInfo from './barInfo';
 const Bar = {
     nome: "Bar do Biu",
     logo: "https://image.freepik.com/vetores-gratis/logotipo-preto-octoberfest-vintage_225004-1232.jpg",
-   cardapio: {
+    cardapio: {
         comida: [
             {
                 nome: "Carne Moída",
@@ -72,24 +72,27 @@ const Bar = {
                 promocao: true
             },
         ]
- 
-        
+
+
     },
-    eventos:[{
-        nome:"Dia do álcool",
+    eventos: [{
+        nome: "Dia do álcool",
         data: "18/02/2021",
         hora: "20:00"
     }]
 }
 
-export default () => {
 
-    const [username, setUsername] = React.useState("thadougab");
-    const [pontos, setPontos] = React.useState(0);
+export default (props) => {
+    const { id } = props;
+    const [user, setUser] = React.useState("");
+    async function getUser() {
+        await API.get(`/users/${id}`).then(response => {
+            setUser(response.data);
+        })
 
+    }
     const [searchString, setSearchString] = React.useState("");
-
-
     let drawer;
     let closeDrawer = () => {
         drawer._root.close()
@@ -98,16 +101,19 @@ export default () => {
         drawer._root.open()
     };
     let barInfo;
-    let closeBarInfo = () =>{
+    let closeBarInfo = () => {
         barInfo._root.close()
     }
     let openBarInfo = () => {
         barInfo._root.open()
     }
+    React.useEffect(() => {
+        getUser();
+    },[]);
     return (
         <Drawer
             ref={(ref) => { drawer = ref; }}
-            content={<SideBar close={() => closeDrawer()} />}
+            content={<SideBar close={() => closeDrawer()} user={user} />}
             onClose={() => closeDrawer()}
             tapToClose={false}
             side="right"
@@ -115,7 +121,7 @@ export default () => {
 
             <Drawer
                 ref={(ref) => { barInfo = ref; }}
-                content={<BarInfo  bar={Bar} close={() => closeBarInfo()} />}
+                content={<BarInfo bar={Bar} close={() => closeBarInfo()} />}
                 onClose={() => closeBarInfo()}
                 tapToClose={false}
                 side="right"
@@ -133,8 +139,7 @@ export default () => {
                         marginVertical: 'auto'
                     }}
                         selectable={false}
-                        onPress={() => setPontos(pontos + 1)}
-                    >{pontos} Pontos</Text>
+                    >{user.pontos} Pontos</Text>
                     <View >
                         <TouchableOpacity
                             onPress={() => openDrawer()}
@@ -150,7 +155,7 @@ export default () => {
                                 marginVertical: 'auto'
                             }}
                                 selectable={false}
-                            >@{username}  </Text>
+                            >@{user.username}  </Text>
                             <Image source={Arrow} style={{
                                 width: 30,
                                 height: 30
@@ -171,7 +176,6 @@ export default () => {
                             height: "100px",
                             width: "100px",
                         }}
-                        onPress={openBarInfo}
                     >
                         <Image source={qrcode} style={{
                             width: "80%",
@@ -188,7 +192,6 @@ export default () => {
                             marginVertical: 'auto'
                         }}
                         selectable={false}
-                        onPress={openBarInfo}
                     >
                         Conecte-se ao Bar
             </Text>
@@ -329,7 +332,7 @@ export default () => {
                         </ScrollView>
                     </View>
                 </View>
-                </Drawer>
             </Drawer>
+        </Drawer>
     )
 }

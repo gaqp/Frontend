@@ -4,10 +4,22 @@ import { Button, Text, TextInput, View, Image } from 'react-native';
 
 import Face from '../assets/face.svg';
 import Lock from '../assets/lock.svg';
-import Logo from '../assets/logo.png'
+import Logo from '../assets/logo.png';
+
+import API from '../services/api'
 export default () => {
     const [loginValue, onChangeLogin] = React.useState("");
     const [passwordValue, onChangePassword] = React.useState("");
+
+    const login = async () => {
+        try {
+            await API.post("/users/login",{"login":loginValue,"password":passwordValue}).then(response => {
+                console.log(response.data, loginValue, passwordValue);
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     return (
         <React.Fragment>
@@ -106,7 +118,7 @@ export default () => {
                     <Button
                         title="Entrar"
                         color="#7a3361"
-                        onPress={() => Updates.reload()}
+                        onPress={login}
                     />
                 </View>
                 <View style={{
@@ -120,7 +132,7 @@ export default () => {
                     <Button
                         title="Entrar com o facebook"
                         disabled={true}
-                        onPress={() => Updates.reload()}
+                        onPress={login}
                     />
                 </View>
                 <Text

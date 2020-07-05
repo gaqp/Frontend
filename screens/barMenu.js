@@ -11,10 +11,8 @@ import SideBar from './sidebar.js';
 import Cardapio from './cardapio.js';
 import Ponto from './trocaPontos.js';
 
-export default () => {
-
-    const [username, setUsername] = React.useState("thadougab");
-    const [pontos, setPontos] = React.useState(0);
+export default (props) => {
+    let pontos = props.user.pontos;
     const Bar = {
         nome: "Bar do Biu",
         logo: "https://image.freepik.com/vetores-gratis/logotipo-preto-octoberfest-vintage_225004-1232.jpg",
@@ -158,7 +156,6 @@ export default () => {
                                 marginVertical: 'auto'
                             }}
                                 selectable={false}
-                                onPress={() => setPontos(pontos + 1)}
                             >{pontos} Pontos</Text>
                             <View >
                                 <TouchableOpacity
