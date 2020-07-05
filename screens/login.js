@@ -15,7 +15,7 @@ export default (props) => {
 
     const login = async () => {
         try {
-            await API.post("/users", { "username": loginValue, "password": passwordValue }).then(response => {
+            await API.post("/users/login", { "login": loginValue, "password": passwordValue }).then(response => {
                 console.log(response.data);
                 if (response.data != "") {
                     props.navigation.navigate('App', { id: response.data._id })

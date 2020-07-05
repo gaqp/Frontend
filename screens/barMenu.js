@@ -10,7 +10,7 @@ import Bufunfa from '../assets/bufunfa.svg';
 import SideBar from './sidebar.js';
 import Cardapio from './cardapio.js';
 import Ponto from './trocaPontos.js';
-
+import Conta from './conta.js'
 export default (props) => {
     const [user, setUser] = React.useState(props.route.params.user)
     console.log(user)
@@ -136,7 +136,7 @@ export default (props) => {
                 <Drawer
                     tapToClose={false}
                     ref={(ref) => { faturaSidebar = ref; }}
-                    content={<SideBar close={() => closeFaturaSidebar()} user={user} />}
+                    content={<Conta cardapio={Bar.cardapio} close={() => closeFaturaSidebar()} user={user} />}
                     onClose={() => closeFaturaSidebar()}
                     side="right"
                 >

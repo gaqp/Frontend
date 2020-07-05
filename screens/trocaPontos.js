@@ -235,5 +235,4 @@ export default (props) => {
         </View>
 
     )
-
 }
