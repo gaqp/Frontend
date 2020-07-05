@@ -1,20 +1,25 @@
 import { Updates } from 'expo';
 import React from 'react';
 import { Button, Text, TextInput, View, Image } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import Face from '../assets/face.svg';
 import Lock from '../assets/lock.svg';
 import Logo from '../assets/logo.png';
 
 import API from '../services/api'
-export default () => {
+export default (props) => {
     const [loginValue, onChangeLogin] = React.useState("");
     const [passwordValue, onChangePassword] = React.useState("");
 
     const login = async () => {
         try {
             await API.post("/users/login",{"login":loginValue,"password":passwordValue}).then(response => {
-                console.log(response.data, loginValue, passwordValue);
+                console.log(response.data);
+                if(response.data != ""){
+                    props.navigation.navigate('App',{id:response.data._id})
+                }
             })
         } catch (err) {
             console.log(err)

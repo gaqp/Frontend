@@ -84,7 +84,8 @@ const Bar = {
 
 
 export default (props) => {
-    const { id } = props;
+    const id  = props.route.params.id;
+    console.log(id);
     const [user, setUser] = React.useState("");
     async function getUser() {
         await API.get(`/users/${id}`).then(response => {

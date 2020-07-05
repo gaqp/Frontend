@@ -1,9 +1,12 @@
+import 'react-native-gesture-handler';
+
 import { AppLoading, SplashScreen } from 'expo';
 import { Asset } from 'expo-asset';
 import Constants from 'expo-constants';
 import React from 'react';
 import { Animated, StyleSheet, View } from 'react-native';
-import Logo from './assets/logo.png'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import MainScreen from './screens/mainScreen'
 import LoginScreen from './screens/login'
@@ -12,6 +15,7 @@ import BarMenu from './screens/barMenu'
 
 // Instruct SplashScreen not to hide yet, we want to do this manually
 SplashScreen.preventAutoHide();
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
@@ -35,8 +39,16 @@ export default function App() {
         overflow: "hidden"
 
       }} >
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Login"
+            screenOptions={{
+              headerShown: false
+            }}>
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="App" component={MainScreen} />
 
-        <MainScreen id="5f01798cdaec1d2994e9c487" />
+          </Stack.Navigator>
+        </NavigationContainer>
         <View style={{
           marginTop: "auto",
           height: "10px",
