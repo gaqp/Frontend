@@ -1,8 +1,5 @@
-import { Updates } from 'expo';
 import React from 'react';
 import { Button, Text, TextInput, View, Image } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 
 import Face from '../assets/face.svg';
 import Lock from '../assets/lock.svg';
@@ -121,45 +118,25 @@ export default (props) => {
                     minWidth: "245px"
                 }}>
                     <Button
-                        title="Entrar"
+                        title="Criar Conta"
                         color="#7a3361"
                         onPress={login}
                     />
+                    <View style={{
+                        height: "40px",
+                        width: "40%",
+                        maxWidth: "300px",
+                        minWidth: "245px",
+                        borderRadius: 20,
+                        marginTop: 15,
+                    }}>
+                        <Button
+                            title="Voltar"
+                            color="#7a3361"
+                            onPress={() => props.navigation.navigate('Login')}
+                        />
+                    </View>
                 </View>
-                <View style={{
-                    height: "40px",
-                    width: "40%",
-                    maxWidth: "300px",
-                    minWidth: "245px",
-                    borderRadius: 10,
-                    marginBottom: 15
-                }}>
-                    <Button
-                        title="Entrar com o facebook"
-                        disabled={true}
-                        onPress={login}
-                    />
-                </View>
-                <Text
-                    onPress={() => Updates.reload()}
-                >
-                    Esqueceu sua senha?
-        </Text>
-                <View style={{
-                    height: "40px",
-                    width: "40%",
-                    maxWidth: "300px",
-                    minWidth: "245px",
-                    borderRadius: 10,
-                    marginBottom: 15
-                }}>
-                    <Button
-                        title="Ainda não é cadastrado?"
-                        color="#7a3361"
-                        onPress={() => props.navigation.navigate('Cadastro')}
-                    />
-                </View>
-
             </View >
         </React.Fragment>
     )

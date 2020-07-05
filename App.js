@@ -11,6 +11,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import MainScreen from './screens/mainScreen'
 import LoginScreen from './screens/login'
 import MenuScreen from './screens/barMenu'
+import CadScreen from './screens/cadastro'
 
 // Instruct SplashScreen not to hide yet, we want to do this manually
 SplashScreen.preventAutoHide();
@@ -48,6 +49,8 @@ export default function App() {
             <Stack.Screen name="App" component={MainScreen} />
 
             <Stack.Screen name="Menu" component={MenuScreen} />
+
+            <Stack.Screen name="Cadastro" component={CadScreen} />
 
           </Stack.Navigator>
         </NavigationContainer>

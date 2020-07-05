@@ -83,7 +83,9 @@ let Bar = {
 export default (props) => {
     const id = props.route.params.id;
     const [user, setUser] = React.useState("");
-    const [mainBar, setMainBar] = React.useState(Bar)
+    const [mainBar, setMainBar] = React.useState(Bar);
+    const [selectedBar, setSelectedBar] = React.useState(mainBar)
+    const [allBares, setAllBares] = React.useState([])
     async function getUser() {
         await API.get(`/users/${id}`).then(response => {
             setUser(response.data);
@@ -91,11 +93,11 @@ export default (props) => {
 
     }
 
-
     async function getBar() {
         await API.get('/bar').then(
             response => {
                 setMainBar(response.data[0]);
+                setAllBares(response.data);
             }
         )
     }
@@ -113,12 +115,20 @@ export default (props) => {
     }
     let openBarInfo = () => {
         barInfo._root.open()
+
+    }
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    let selectBar = (bar) => {
+        setSelectedBar(bar)
+        sleep(500).then(barInfo._root.open())
     }
     React.useEffect(() => {
         getUser();
         getBar();
     }, [])
-
     return (
         <Drawer
             ref={(ref) => { drawer = ref; }}
@@ -130,7 +140,7 @@ export default (props) => {
 
             <Drawer
                 ref={(ref) => { barInfo = ref; }}
-                content={<BarInfo bar={mainBar} close={() => closeBarInfo()} />}
+                content={<BarInfo bar={selectedBar} close={() => closeBarInfo()} />}
                 onClose={() => closeBarInfo()}
                 tapToClose={false}
                 side="right"
@@ -315,16 +325,40 @@ export default (props) => {
                             style={{
                                 height: "100px",
                                 overflowX: "scroll",
-                                overflowY: "hidden"
+                                overflowY: "scroll",
+                                borderRadius: "20px"
                             }}
                         >
-                            <Image
-                                source="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Lower_Manhattan_from_Staten_Island_Ferry_Corrected_Jan_2006.jpg/1024px-Lower_Manhattan_from_Staten_Island_Ferry_Corrected_Jan_2006.jpg"
-                                style={{
-                                    width: "1024px",
-                                    height: "256px"
-                                }}
-                            />
+                            <View style={{
+                                height: "100px",
+                                display: "inline-flex",
+                                flexDirection: "row",
+                            }}>
+                                {allBares.map(foto => {
+                                    return (
+                                        <TouchableOpacity key={foto._id}
+                                            onPress={
+                                                () => selectBar(foto)
+                                            }
+
+                                        >
+                                            <View style={{
+                                                width: "100px",
+                                                height: "100px",
+                                                backgroundColor: roxo,
+                                                borderRadius: "20px",
+                                                marginRight: "20px"
+                                            }}>
+                                                <Image source={foto.logo} style={{
+                                                    width: "100px",
+                                                    height: "100px",
+                                                    borderRadius: '20px'
+                                                }} />
+                                            </View>
+                                        </TouchableOpacity>
+                                    )
+                                })}
+                            </View>
                         </ScrollView>
                     </View>
                     <View style={{
@@ -360,8 +394,8 @@ export default (props) => {
                             }}>
                                 {mainBar.mural.map(foto => {
                                     return (
-                                        <TouchableOpacity>
-                                            <View key={foto._id} style={{
+                                        <TouchableOpacity key={foto._id}>
+                                            <View style={{
                                                 width: "100px",
                                                 height: "100px",
                                                 backgroundColor: roxo,

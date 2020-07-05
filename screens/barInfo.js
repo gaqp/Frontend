@@ -30,7 +30,6 @@ export default (props) => {
             justifyContent: "space-between"
         }
     })
-    console.log(props.bar)
     if (props.bar !=undefined) {
         return (
             <View style={{
