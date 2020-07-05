@@ -85,13 +85,22 @@ const Bar = {
 
 export default (props) => {
     const id  = props.route.params.id;
-    console.log(id);
     const [user, setUser] = React.useState("");
+    const [mainBar,setMainBar] = React.useState({nome:"",landscape:""})
     async function getUser() {
         await API.get(`/users/${id}`).then(response => {
             setUser(response.data);
         })
 
+    }
+
+    
+    async function getBar(){
+        await API.get('/bar').then(
+            response =>{
+                setMainBar(response.data[0]);
+            }
+        )
     }
     const [searchString, setSearchString] = React.useState("");
     let drawer;
@@ -110,6 +119,7 @@ export default (props) => {
     }
     React.useEffect(() => {
         getUser();
+        getBar();
     },[]);
     return (
         <Drawer
@@ -260,9 +270,14 @@ export default (props) => {
                             height: "100px",
                             backgroundColor: roxo,
                             borderRadius: "15px",
-                            marginTop: "5px"
+                            marginTop: "5px",
+                            overflow:"hidden"
                         }}
                     >
+                    <Image source={mainBar.landscape} style={{
+                        width:"auto",
+                        height:"100px",
+                    }}/>
                     </View>
                     <View style={{
                         marginTop: "25px"
