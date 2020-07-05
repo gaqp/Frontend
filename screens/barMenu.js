@@ -12,11 +12,14 @@ import Cardapio from './cardapio.js';
 import Ponto from './trocaPontos.js';
 
 export default (props) => {
-    let pontos = props.user.pontos;
+    const [user, setUser] = React.useState(props.route.params.user)
+    console.log(user)
+    let pontos = user.pontos;
+    let username = user.username;
     const Bar = {
         nome: "Bar do Biu",
         logo: "https://image.freepik.com/vetores-gratis/logotipo-preto-octoberfest-vintage_225004-1232.jpg",
-       cardapio: {
+        cardapio: {
             comida: [
                 {
                     nome: "Carne Moída",
@@ -72,11 +75,11 @@ export default (props) => {
                     promocao: true
                 },
             ]
-     
-            
+
+
         },
-        eventos:{
-            nome:"Dia do álcool",
+        eventos: {
+            nome: "Dia do álcool",
             data: "18/02/2021",
             hora: "20:00"
         }
@@ -118,7 +121,7 @@ export default (props) => {
     return (
         <Drawer
             ref={(ref) => { sidebar = ref; }}
-            content={<SideBar close={() => closeSidebar()} />}
+            content={<SideBar close={() => closeSidebar()} user={user} />}
             onClose={() => closeSidebar()}
             tapToClose={false}
             side="right"
@@ -133,7 +136,7 @@ export default (props) => {
                 <Drawer
                     tapToClose={false}
                     ref={(ref) => { faturaSidebar = ref; }}
-                    content={<SideBar close={() => closeFaturaSidebar()} />}
+                    content={<SideBar close={() => closeFaturaSidebar()} user={user} />}
                     onClose={() => closeFaturaSidebar()}
                     side="right"
                 >

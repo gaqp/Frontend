@@ -11,10 +11,10 @@ import qrcode from '../assets/qr.svg'
 import search from '../assets/search.svg'
 
 import SideBar from './sidebar.js'
-import barInfo from './barInfo';
 
-const Bar = {
-    nome: "Bar do Biu",
+
+let Bar = {
+    nome: "Bar do Biu James Baxter",
     logo: "https://image.freepik.com/vetores-gratis/logotipo-preto-octoberfest-vintage_225004-1232.jpg",
     cardapio: {
         comida: [
@@ -71,22 +71,19 @@ const Bar = {
                 preco: 5.00,
                 promocao: true
             },
-        ]
-
-
+        ],
+        eventos: [{
+            nome: "Dia do álcool",
+            data: "18/02/2021",
+            hora: "20:00"
+        }]
     },
-    eventos: [{
-        nome: "Dia do álcool",
-        data: "18/02/2021",
-        hora: "20:00"
-    }]
+    "mural": [{ "_id": 0, "url": "https://image.freepik.com/fotos-gratis/grupo-de-amigos-felizes-torcendo-com-copos-de-cerveja_23-2148153836.jpg" }]
 }
-
-
 export default (props) => {
-    const id  = props.route.params.id;
+    const id = props.route.params.id;
     const [user, setUser] = React.useState("");
-    const [mainBar,setMainBar] = React.useState({nome:"",landscape:""})
+    const [mainBar, setMainBar] = React.useState(Bar)
     async function getUser() {
         await API.get(`/users/${id}`).then(response => {
             setUser(response.data);
@@ -94,10 +91,10 @@ export default (props) => {
 
     }
 
-    
-    async function getBar(){
+
+    async function getBar() {
         await API.get('/bar').then(
-            response =>{
+            response => {
                 setMainBar(response.data[0]);
             }
         )
@@ -120,7 +117,8 @@ export default (props) => {
     React.useEffect(() => {
         getUser();
         getBar();
-    },[]);
+    }, [])
+
     return (
         <Drawer
             ref={(ref) => { drawer = ref; }}
@@ -132,7 +130,7 @@ export default (props) => {
 
             <Drawer
                 ref={(ref) => { barInfo = ref; }}
-                content={<BarInfo bar={Bar} close={() => closeBarInfo()} />}
+                content={<BarInfo bar={mainBar} close={() => closeBarInfo()} />}
                 onClose={() => closeBarInfo()}
                 tapToClose={false}
                 side="right"
@@ -203,6 +201,9 @@ export default (props) => {
                             marginVertical: 'auto'
                         }}
                         selectable={false}
+                        onPress={() => {
+                            props.navigation.navigate('Menu', { user: user })
+                        }}
                     >
                         Conecte-se ao Bar
             </Text>
@@ -214,7 +215,10 @@ export default (props) => {
                     alignItems: 'center',
                     flexDirection: 'row',
                     width: "75%"
-                }}>
+                }}
+
+                >
+
                     <Image source={search}
                         style={{
                             position: "absolute",
@@ -271,13 +275,23 @@ export default (props) => {
                             backgroundColor: roxo,
                             borderRadius: "15px",
                             marginTop: "5px",
-                            overflow:"hidden"
+                            overflow: "hidden"
                         }}
+
                     >
-                    <Image source={mainBar.landscape} style={{
-                        width:"auto",
-                        height:"100px",
-                    }}/>
+                        <TouchableOpacity
+                            onPress={openBarInfo}
+                            style={{
+                                width: "auto",
+                                height: "100px",
+                            }}
+                        >
+                            <Image source={mainBar.landscape} style={{
+                                width: "auto",
+                                height: "100px",
+                            }}
+                            />
+                        </TouchableOpacity>
                     </View>
                     <View style={{
                         marginTop: "25px"
@@ -321,30 +335,49 @@ export default (props) => {
                             fontSize: "1rem",
                             color: "#606062"
                         }}>
-                            A grana está curta? Temos descontos!
+                            Mural
                 </Text>
                         <Text style={{
                             fontSize: "0.8rem",
                             marginTop: "5px",
                             color: "#A1A1A1"
                         }}>
-                            Descontos TOP do dia!
+                            As melhores fotos
                 </Text>
                         <ScrollView
                             showsHorizontalScrollIndicator={false}
                             style={{
                                 height: "100px",
                                 overflowX: "scroll",
-                                overflowY: "hidden"
+                                overflowY: "scroll",
+                                borderRadius: "20px"
                             }}
                         >
-                            <Image
-                                source="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Lower_Manhattan_from_Staten_Island_Ferry_Corrected_Jan_2006.jpg/1024px-Lower_Manhattan_from_Staten_Island_Ferry_Corrected_Jan_2006.jpg"
-                                style={{
-                                    width: "1024px",
-                                    height: "256px"
-                                }}
-                            />
+                            <View style={{
+                                height: "100px",
+                                display: "inline-flex",
+                                flexDirection: "row",
+                            }}>
+                                {mainBar.mural.map(foto => {
+                                    return (
+                                        <TouchableOpacity>
+                                            <View key={foto._id} style={{
+                                                width: "100px",
+                                                height: "100px",
+                                                backgroundColor: roxo,
+                                                borderRadius: "20px",
+                                                marginRight: "20px"
+                                            }}>
+                                                <Image source={foto.url} style={{
+                                                    width: "100px",
+                                                    height: "100px",
+                                                    borderRadius: '20px'
+                                                }} />
+                                            </View>
+                                        </TouchableOpacity>
+                                    )
+                                })}
+                            </View>
                         </ScrollView>
                     </View>
                 </View>

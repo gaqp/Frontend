@@ -10,8 +10,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import MainScreen from './screens/mainScreen'
 import LoginScreen from './screens/login'
-import Sidebar from './screens/sidebar'
-import BarMenu from './screens/barMenu'
+import MenuScreen from './screens/barMenu'
 
 // Instruct SplashScreen not to hide yet, we want to do this manually
 SplashScreen.preventAutoHide();
@@ -45,7 +44,10 @@ export default function App() {
               headerShown: false
             }}>
             <Stack.Screen name="Login" component={LoginScreen} />
+
             <Stack.Screen name="App" component={MainScreen} />
+
+            <Stack.Screen name="Menu" component={MenuScreen} />
 
           </Stack.Navigator>
         </NavigationContainer>
