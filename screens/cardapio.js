@@ -43,7 +43,7 @@ export default (props) => {
                 <Text style={{
                     marginLeft: "10px",
                     marginBottom: "20px",
-                    marginTop:"20px",
+                    marginTop: "20px",
                     fontWeight: "bold",
                     fontSize: "1rem",
                     color: "#606062"
@@ -62,6 +62,8 @@ export default (props) => {
                     </Text>
 
                     {props.cardapio.comida.map(item => {
+                        const [checked, setChecked] = React.useState(false);
+
                         return (
                             <View key={item.nome}>
                                 <View style={{
@@ -73,6 +75,13 @@ export default (props) => {
                                         margin: 0,
                                         padding: 0
                                     }}
+                                        checked={checked}
+
+                                        onPress={
+                                            () => {
+                                                setChecked(!checked);
+                                            }
+                                        }
                                     />
                                     <Text style={{
                                         marginLeft: "20px",
@@ -116,6 +125,8 @@ export default (props) => {
                         Bebidas
                     </Text>
                     {props.cardapio.bebida.map(item => {
+                        const [checked, setChecked] = React.useState(false);
+
                         return (
 
                             <View key={item.nome}>
@@ -128,6 +139,13 @@ export default (props) => {
                                         margin: 0,
                                         padding: 0
                                     }}
+                                        checked={checked}
+
+                                        onPress={
+                                            () => {
+                                                setChecked(!checked);
+                                            }
+                                        }
                                     />
 
                                     <Text style={{
@@ -174,6 +192,8 @@ export default (props) => {
                     </Text>
                     {props.cardapio.comida.map(item => {
                         if (item.promocao) {
+                            const [checked, setChecked] = React.useState(false);
+
                             return (
                                 <View key={item.nome}>
                                     <View style={{
@@ -185,6 +205,13 @@ export default (props) => {
                                             margin: 0,
                                             padding: 0
                                         }}
+                                            checked={checked}
+
+                                            onPress={
+                                                () => {
+                                                    setChecked(!checked);
+                                                }
+                                            }
                                         />
                                         <Text style={{
                                             marginLeft: "20px",
@@ -220,7 +247,10 @@ export default (props) => {
                     })}
 
                     {props.cardapio.bebida.map(item => {
+
                         if (item.promocao) {
+                            const [checked, setChecked] = React.useState(false);
+
                             return (
                                 <View key={item.nome}>
                                     <View style={{
@@ -232,6 +262,13 @@ export default (props) => {
                                             margin: 0,
                                             padding: 0
                                         }}
+                                            checked={checked}
+
+                                            onPress={
+                                                () => {
+                                                    setChecked(!checked);
+                                                }
+                                            }
                                         />
                                         <Text style={{
                                             marginLeft: "20px",
@@ -269,21 +306,21 @@ export default (props) => {
                 </View>
             </View>
             <TouchableOpacity style={{
-                height:"70px",
-                width:"70px",
-                backgroundColor:roxo,
-                borderRadius:"50%",
-                marginTop:"auto",
-                marginLeft:"auto",
-                marginBottom:"20px",
-                marginRight:"20px"
+                height: "70px",
+                width: "70px",
+                backgroundColor: roxo,
+                borderRadius: "50%",
+                marginTop: "auto",
+                marginLeft: "auto",
+                marginBottom: "20px",
+                marginRight: "20px"
             }}>
                 <Image source={Comida} style={{
-                    width:"50px",
-                    height:"50px",
-                    marginHorizontal:"auto",
-                    marginVertical:"auto"
-                }}/>
+                    width: "50px",
+                    height: "50px",
+                    marginHorizontal: "auto",
+                    marginVertical: "auto"
+                }} />
             </TouchableOpacity>
         </View>
 

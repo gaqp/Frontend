@@ -62,6 +62,7 @@ export default (props) => {
                         Opa!, Que tal?
                     </Text>
                     {props.cardapio.comida.map(item => {
+                        const [checked, setChecked] = React.useState(false);
                         return (
                             <View key={item.nome}>
                                 <View style={{
@@ -73,6 +74,12 @@ export default (props) => {
                                         margin: 0,
                                         padding: 0
                                     }}
+                                        checked={checked}
+                                        onPress={
+                                            () => {
+                                                setChecked(!checked);
+                                            }
+                                        }
                                     />
                                     <Text style={{
                                         marginLeft: "20px",
@@ -105,6 +112,7 @@ export default (props) => {
                         )
                     })}
                     {props.cardapio.bebida.map(item => {
+                        const [checked, setChecked] = React.useState(false);
                         return (
                             <View key={item.nome}>
                                 <View style={{
@@ -116,6 +124,13 @@ export default (props) => {
                                         margin: 0,
                                         padding: 0
                                     }}
+                                        checked={checked}
+
+                                        onPress={
+                                            () => {
+                                                setChecked(!checked);
+                                            }
+                                        }
                                     />
                                     <Text style={{
                                         marginLeft: "20px",
@@ -148,6 +163,7 @@ export default (props) => {
                         )
                     })}
                     {props.cardapio.pontos.map(item => {
+                        const [checked, setChecked] = React.useState(false);
                         return (
                             <View key={item.nome}>
                                 <View style={{
@@ -159,6 +175,13 @@ export default (props) => {
                                         margin: 0,
                                         padding: 0
                                     }}
+                                    checked={checked}
+
+                                        onPress={
+                                            () => {
+                                                setChecked(!checked);
+                                            }
+                                        }
                                     />
                                     <Text style={{
                                         marginLeft: "20px",

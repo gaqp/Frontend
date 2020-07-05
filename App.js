@@ -36,7 +36,7 @@ export default function App() {
 
       }} >
 
-        <BarMenu />
+        <MainScreen />
         <View style={{
           marginTop: "auto",
           height: "10px",
