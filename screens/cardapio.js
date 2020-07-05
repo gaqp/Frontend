@@ -1,12 +1,12 @@
 import React from 'react';
 import { TouchableOpacity, Text, Switch, View, ScrollView, Image } from 'react-native';
-import CheckBox from '@react-native-community/checkbox';
+import { CheckBox } from 'react-native-elements'
 
 
 let roxo = "#7A3361";
 
 import Arrow from '../assets/arrow.svg'
-import User from '../assets/face.svg'
+import Comida from '../assets/comida.svg'
 
 export default (props) => {
 
@@ -68,7 +68,11 @@ export default (props) => {
                                     flexDirection: "row",
                                     justifyContent: 'space-between'
                                 }}>
-
+                                    <CheckBox containerStyle={{
+                                        margin: 0,
+                                        padding: 0
+                                    }}
+                                    />
                                     <Text style={{
                                         marginLeft: "20px",
                                         marginBottom: "10px",
@@ -112,12 +116,19 @@ export default (props) => {
                     </Text>
                     {props.cardapio.bebida.map(item => {
                         return (
+
                             <View key={item.nome}>
                                 <View style={{
                                     display: "inline-flex",
                                     flexDirection: "row",
                                     justifyContent: 'space-between'
                                 }}>
+                                    <CheckBox containerStyle={{
+                                        margin: 0,
+                                        padding: 0
+                                    }}
+                                    />
+
                                     <Text style={{
                                         marginLeft: "20px",
                                         marginBottom: "10px",
@@ -169,6 +180,11 @@ export default (props) => {
                                         flexDirection: "row",
                                         justifyContent: 'space-between'
                                     }}>
+                                        <CheckBox containerStyle={{
+                                            margin: 0,
+                                            padding: 0
+                                        }}
+                                        />
                                         <Text style={{
                                             marginLeft: "20px",
                                             marginBottom: "10px",
@@ -211,6 +227,11 @@ export default (props) => {
                                         flexDirection: "row",
                                         justifyContent: 'space-between'
                                     }}>
+                                        <CheckBox containerStyle={{
+                                            margin: 0,
+                                            padding: 0
+                                        }}
+                                        />
                                         <Text style={{
                                             marginLeft: "20px",
                                             marginBottom: "10px",
@@ -246,7 +267,9 @@ export default (props) => {
 
                 </View>
             </View>
-
+            <TouchableOpacity>
+                
+            </TouchableOpacity>
         </View>
 
     )
