@@ -8,6 +8,8 @@ import Logo from './assets/logo.png'
 import MainScreen from './screens/mainScreen'
 import LoginScreen from './screens/login'
 import Sidebar from './screens/sidebar'
+import BarMenu from './screens/barMenu'
+
 // Instruct SplashScreen not to hide yet, we want to do this manually
 SplashScreen.preventAutoHide();
 
@@ -34,7 +36,7 @@ export default function App() {
 
       }} >
 
-        <MainScreen />
+        <BarMenu />
         <View style={{
           marginTop: "auto",
           height: "10px",
